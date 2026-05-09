@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DVRE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+/* =====================
+   RESET & BASE
+   ===================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background: #fff;
+    color: #111;
+    overflow-x: hidden;
+}
+
+/* =====================
+   INTRO
+   ===================== */
+#intro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 1.4s ease;
+}
+
+#intro.fade-out { opacity: 0; pointer-events: none; }
+
+#intro-letters { display: flex; gap: 0.04em; }
+
+.letter {
+    color: #fff;
+    font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+    font-size: 126px;
+    font-weight: 500;
+    font-stretch: condensed;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: letterIn 0.35s ease forwards;
+}
+
+@keyframes letterIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================
+   NAVBAR
+   ===================== */
+#navbar {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 32px 0 20px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+#navbar.visible { opacity: 1; }
+
+#logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: #000;
+    flex-shrink: 0;
+    transition: background 0.4s ease;
+}
+
+#logo span {
+    color: #fff;
+    font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+    font-size: 20.4px;
+    font-weight: 500;
+    font-stretch: condensed;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    transition: color 0.4s ease;
+}
+
+nav#main-nav { display: flex; gap: 36px; margin-left: auto; }
+
+nav#main-nav a {
+    color: #000;
+    font-size: 13.2px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0.9;
+    transition: color 0.4s ease, opacity 0.2s;
+}
+
+nav#main-nav a:hover { opacity: 1; }
+
+#navbar.on-hero #logo { background: transparent; }
+#navbar.on-hero #logo span { color: #fff; }
+#navbar.on-hero nav#main-nav a { color: #fff; }
+#navbar.on-hero #hamburger span { background: #fff; }
+
+#navbar.on-dark #logo { background: #fff; }
+#navbar.on-dark #logo span { color: #000; }
+#navbar.on-dark nav#main-nav a { color: #fff; }
+
+#hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 8px;
+}
+
+#hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: #000;
+    transition: background 0.3s;
+}
+
+#navbar.on-dark #hamburger span { background: #fff; }
+
+#mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 8000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+#mobile-menu.open { opacity: 1; pointer-events: all; }
+
+#mobile-close {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+#mobile-nav { display: flex; flex-direction: column; align-items: center; gap: 32px; }
+
+#mobile-nav a {
+    color: #fff;
+    font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+    font-size: 48px;
+    font-weight: 500;
+    font-stretch: condensed;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
+
+#mobile-nav a:hover { opacity: 1; }
+
+/* =====================
+   HERO
+   ===================== */
+#hero { position: relative; height: 100vh; overflow: hidden; }
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+    background-size: cover;
+    background-position: center;
+}
+
+.slide.active { opacity: 1; }
+
+#hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 55%, transparent 100%);
+    z-index: 1;
+}
+
+#hero-text {
+    position: absolute;
+    bottom: 14%;
+    left: 6%;
+    z-index: 2;
+    color: #fff;
+    max-width: 90vw;
+}
+
+.hero-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 16px;
+}
+
+.hero-title {
+    font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+    font-size: 99px;
+    font-weight: 500;
+    font-stretch: condensed;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.letter-morph {
+    display: inline-block;
+    position: relative;
+    perspective: 600px;
+}
+
+.lm-front,
+.lm-back {
+    display: inline-block;
+    backface-visibility: hidden;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lm-back {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: rotateY(180deg);
+}
+
+.letter-morph.flipped .lm-front { transform: rotateY(-180deg); }
+.letter-morph.flipped .lm-back  { transform: rotateY(0deg); }
+
+.btn-primary {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 28px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-primary:hover { background: #000; color: #fff; }
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.slider-arrow:hover { opacity: 1; }
+
+.slider-arrow::before {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-top: 1.5px solid #fff;
+    border-right: 1.5px solid #fff;
+}
+
+#arrow-prev { left: 28px; }
+#arrow-prev::before { transform: rotate(-135deg); margin-left: 14px; }
+#arrow-next { right: 28px; }
+#arrow-next::before { transform: rotate(45deg); margin-left: 10px; }
+
+#slider-dots {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active { background: #fff; }
+
+/* =====================
+   GEDEELDE SECTIES
+   ===================== */
+section { padding: 96px 6%; }
+
+.section-header { margin-bottom: 52px; }
+
+.section-label {
+    font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+    font-stretch: condensed;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #111;
+    display: block;
+    margin-bottom: 0;
+}
+
+.section-rule { display: none; }
+
+/* =====================
+   TAGLINE BLOK
+   ===================== */
+#tagline-block {
+    background: #111;
+    padding: 72px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tagline-text {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 38px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: #fff;
+    text-align: center;
+    line-height: 1.2;
+    max-width: 90vw;
+}
+
+/* =====================
+   DIENSTEN
+   ===================== */
+#diensten {
+    background: #fff;
+    padding: 96px 6% 0;
+}
+
+.diensten-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+#diensten-img-panel {
+    aspect-ratio: 1/1;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+#diensten-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.diensten-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.dienst-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-top: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: color 0.25s ease, transform 0.25s ease;
+    color: #aaa;
+}
+
+.dienst-row:last-child { border-bottom: 1px solid #e0e0e0; }
+
+.dienst-row.active { color: #111; }
+.dienst-row:not(.active):hover { color: #555; transform: translateX(6px); }
+
+.dienst-num {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: inherit;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.dienst-name {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1.2;
+}
+
+.diensten-desc-wrap { position: relative; min-height: 80px; }
+
+.dienst-desc {
+    display: none;
+    animation: fadeInText 0.35s ease;
+}
+
+.dienst-desc.active { display: block; }
+
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.dienst-desc p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #555;
+    max-width: 400px;
+}
+
+/* =====================
+   PROJECTEN
+   ===================== */
+#projecten { background: #fff; }
+
+.projecten-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.project-card { cursor: pointer; }
+
+.project-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-img { transform: scale(1.02); }
+
+.project-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 16px;
+    border-top: 1px solid #ddd;
+    margin-top: 16px;
+}
+
+.project-type {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.project-loc { font-size: 12px; color: #888; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.project-arrow { font-size: 18px; color: #111; opacity: 0.4; transition: opacity 0.2s; }
+.project-card:hover .project-arrow { opacity: 1; }
+
+/* =====================
+   STATS
+   ===================== */
+#stats {
+    background: #111;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 6%;
+}
+
+.stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+}
+
+.stat-num {
+    font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+    font-size: 64px;
+    font-weight: 500;
+    font-stretch: condensed;
+    letter-spacing: 0.02em;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    line-height: 1.6;
+}
+
+.stat-divider { width: 1px; height: 64px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+
+/* =====================
+   OVER DVRE
+   ===================== */
+#over {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 96px 6%;
+}
+
+.over-quote {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    margin-bottom: 36px;
+    color: #111;
+}
+
+.btn-secondary {
+    display: inline-block;
+    color: #111;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1.5px solid #111;
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+}
+
+.btn-secondary:hover { opacity: 0.5; }
+
+#over-img {
+    aspect-ratio: 4/5;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* =====================
+   CONTACT CTA
+   ===================== */
+#contact-cta {
+    background: #111;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 72px 6%;
+}
+
+#cta-text p { font-size: 28px; font-weight: 300; line-height: 1.4; }
+#cta-text strong { font-weight: 700; }
+
+.btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid #fff;
+    flex-shrink: 0;
+}
+
+.btn-outline:hover { background: #fff; color: #111; }
+
+/* =====================
+   FOOTER
+   ===================== */
+#footer {
+    background: #1c1c1c;
+    border-top: none;
+    padding: 52px 6%;
+    display: grid;
+    grid-template-columns: auto 1fr 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+    position: relative;
+}
+
+#footer-logo-box {
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#footer-logo-box span {
+    color: #000;
+    font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: condensed;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.footer-col { display: flex; flex-direction: column; gap: 10px; }
+
+.footer-heading {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.footer-col a, .footer-col span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+}
+
+.footer-col a:hover { color: #fff; }
+
+#footer-copy {
+    position: absolute;
+    bottom: 52px;
+    right: 6%;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+}
+
+/* =====================
+   RESPONSIVE — TABLET
+   ===================== */
+@media (max-width: 768px) {
+    .diensten-inner { grid-template-columns: 1fr; gap: 40px; }
+    #diensten-img-panel { aspect-ratio: 16/9; }
+    .projecten-grid { grid-template-columns: repeat(2, 1fr); }
+    #over { grid-template-columns: 1fr; gap: 40px; }
+    #over-img { aspect-ratio: 16/9; }
+    #footer { grid-template-columns: 1fr 1fr; gap: 40px; }
+    #footer-logo { grid-column: 1 / -1; }
+    #footer-copy { position: static; margin-top: 8px; grid-column: 1 / -1; }
+    .hero-title { font-size: 88px; }
+    #tagline-text { font-size: 36px; }
+}
+
+/* =====================
+   RESPONSIVE — MOBIEL
+   ===================== */
+@media (max-width: 600px) {
+    nav#main-nav { display: none; }
+    #hamburger { display: flex; }
+    .hero-title { font-size: 52px; }
+    #hero-text { left: 5%; bottom: 12%; }
+    section { padding: 64px 5%; }
+    .section-label { font-size: 30px; }
+    .diensten-inner { grid-template-columns: 1fr; }
+    .projecten-grid { grid-template-columns: 1fr; }
+    #stats { flex-direction: column; gap: 40px; padding: 56px 5%; }
+    .stat-divider { width: 40px; height: 1px; }
+    .stat-num { font-size: 52px; }
+    #over { grid-template-columns: 1fr; }
+    #contact-cta { flex-direction: column; gap: 28px; text-align: center; padding: 56px 5%; }
+    #cta-text p { font-size: 20px; }
+    #footer { grid-template-columns: 1fr; gap: 32px; }
+    #footer-copy { position: static; }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Intro overlay -->
+    <div id="intro">
+        <div id="intro-letters">
+            <span class="letter" style="animation-delay: 0s">D</span>
+            <span class="letter" style="animation-delay: 0.18s">V</span>
+            <span class="letter" style="animation-delay: 0.36s">R</span>
+            <span class="letter" style="animation-delay: 0.54s">E</span>
+        </div>
+    </div>
+
+    <!-- Navigatiebalk -->
+    <header id="navbar">
+        <div id="logo"><span>DVRE</span></div>
+        <nav id="main-nav">
+            <a href="#projecten">Projecten</a>
+            <a href="#diensten">Diensten</a>
+            <a href="#over">Over DVRE</a>
+            <a href="#contact-cta">Contact</a>
+        </nav>
+        <button id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- Mobiel menu -->
+    <div id="mobile-menu">
+        <button id="mobile-close">✕</button>
+        <nav id="mobile-nav">
+            <a href="#projecten">Projecten</a>
+            <a href="#diensten">Diensten</a>
+            <a href="#over">Over DVRE</a>
+            <a href="#contact-cta">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Hero slider -->
+    <section id="hero">
+        <div class="slide active" style="background-image: url('images/Slider/Slider 01.png');"></div>
+        <div class="slide" style="background-image: url('images/Slider/Slider 02.png');"></div>
+        <div class="slide" style="background-image: url('images/Slider/Slider 03.png');"></div>
+        <div id="hero-overlay"></div>
+        <div id="hero-text">
+            <p class="hero-label">Architectuur · Vergunningen · Transformaties</p>
+            <h1 class="hero-title">
+                We&nbsp;D<span class="letter-morph"><span class="lm-front">A</span><span class="lm-back">V</span></span>RE&nbsp;you&nbsp;THRIVE
+            </h1>
+            <a href="#projecten" class="btn-primary">Bekijk projecten &nbsp;→</a>
+        </div>
+        <button class="slider-arrow" id="arrow-prev"></button>
+        <button class="slider-arrow" id="arrow-next"></button>
+        <div id="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- Tagline blok -->
+    <section id="tagline-block">
+        <p id="tagline-text">Wij transformeren jouw ambitie<br>om naar realisatie.</p>
+    </section>
+
+    <!-- Diensten -->
+    <section id="diensten">
+        <div class="diensten-inner">
+            <div id="diensten-img-panel" style="background-image: url('images/Onze diensten/Foto 01.png');"></div>
+            <div id="diensten-right">
+                <div class="section-header">
+                    <span class="section-label">Onze diensten</span>
+                    <div class="section-rule"></div>
+                </div>
+                <div class="diensten-list">
+                    <div class="dienst-row" data-index="0"><span class="dienst-num">01</span><span class="dienst-name">Architectuur</span></div>
+                    <div class="dienst-row" data-index="1"><span class="dienst-num">02</span><span class="dienst-name">Interieurontwerp</span></div>
+                    <div class="dienst-row" data-index="2"><span class="dienst-num">03</span><span class="dienst-name">Omgevingsvergunningen</span></div>
+                    <div class="dienst-row" data-index="3"><span class="dienst-num">04</span><span class="dienst-name">Verbouwingen &amp; Transformaties</span></div>
+                    <div class="dienst-row" data-index="4"><span class="dienst-num">05</span><span class="dienst-name">Splitsingen</span></div>
+                    <div class="dienst-row" data-index="5"><span class="dienst-num">06</span><span class="dienst-name">Visualisaties</span></div>
+                </div>
+                <div class="diensten-desc-wrap">
+                    <div class="dienst-desc" data-index="0"><p>Goed ontwerp begint met luisteren. Bij DVRE vertalen we jouw wensen, de plek en de context naar architectuur die klopt — niet alleen op papier, maar ook in gebruik.</p></div>
+                    <div class="dienst-desc" data-index="1"><p>Een ruimte bepaalt hoe je je voelt. Wij ontwerpen interieurs die niet alleen mooi zijn, maar die werken. Licht, materiaal en proporties — alles is bewust gekozen.</p></div>
+                    <div class="dienst-desc" data-index="2"><p>Vergunningen zijn het fundament van elk bouwproject. Bij DVRE begeleiden we het traject van vooroverleg tot definitieve beschikking — zonder verrassingen.</p></div>
+                    <div class="dienst-desc" data-index="3"><p>Bestaande gebouwen hebben karakter. DVRE geeft bestaande panden nieuw leven — met respect voor het verleden en oog voor de toekomst.</p></div>
+                    <div class="dienst-desc" data-index="4"><p>Van één woning naar meerdere zelfstandige eenheden — van technische haalbaarheid en vergunningstraject tot de indeling en het ontwerp per eenheid.</p></div>
+                    <div class="dienst-desc" data-index="5"><p>Voordat de eerste steen wordt gelegd, laat DVRE zien hoe het eruit gaat zien. Beelden die het gevoel van de ruimte overbrengen.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projecten -->
+    <section id="projecten">
+        <div class="section-header">
+            <span class="section-label">Projecten</span>
+            <div class="section-rule"></div>
+        </div>
+        <div class="projecten-grid">
+            <div class="project-card">
+                <div class="project-img" style="background-image: url('images/Projecten homepage/Project 01.png');"></div>
+                <div class="project-info">
+                    <div><p class="project-type">Verbouwing &amp; Uitbreiding</p><p class="project-loc">Woning, Amsterdam</p></div>
+                    <span class="project-arrow">→</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img" style="background-image: url('images/Projecten homepage/Project 02.png');"></div>
+                <div class="project-info">
+                    <div><p class="project-type">Splitsing &amp; Transformatie</p><p class="project-loc">Appartementen, Utrecht</p></div>
+                    <span class="project-arrow">→</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img" style="background-image: url('images/Projecten homepage/Project 03.png');"></div>
+                <div class="project-info">
+                    <div><p class="project-type">Vergunning &amp; Nieuwbouw</p><p class="project-loc">Woning, Haarlem</p></div>
+                    <span class="project-arrow">→</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats">
+        <div class="stat"><span class="stat-num" data-target="35">0</span><span class="stat-label">Projecten<br>gerealiseerd</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="20">0</span><span class="stat-label">Vergunningen<br>per jaar</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="10">0</span><span class="stat-label">Jaar ervaring<br>in ontwerp &amp; realisatie</span></div>
+    </section>
+
+    <!-- Over DVRE -->
+    <section id="over">
+        <div id="over-text">
+            <div class="section-header">
+                <span class="section-label">Over DVRE</span>
+                <div class="section-rule"></div>
+            </div>
+            <p class="over-quote">DVRE is ontstaan vanuit<br>de behoefte om te creëren<br>in plaats van te aarzelen.</p>
+            <a href="#" class="btn-secondary">Meer over DVRE &nbsp;→</a>
+        </div>
+        <div id="over-img" style="background-image: url('images/Over ons/Over ons.png');"></div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="contact-cta">
+        <div id="cta-text">
+            <p>Heb je plannen?</p>
+            <p><strong>Wij maken ze mogelijk.</strong></p>
+        </div>
+        <a href="#" class="btn-primary btn-outline">Neem contact op &nbsp;→</a>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div id="footer-logo"><div id="footer-logo-box"><span>DVRE</span></div></div>
+        <div class="footer-col">
+            <p class="footer-heading">Navigatie</p>
+            <a href="#">Projecten</a><a href="#">Diensten</a><a href="#over">Over DVRE</a><a href="#contact-cta">Contact</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Socials</p>
+            <a href="#">Instagram</a><a href="#">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Contact</p>
+            <a href="#">info@dvre.studio</a><a href="#">+31 6 12345678</a><span>Nederland</span>
+        </div>
+        <div id="footer-copy">© DVRE Studio 2025</div>
+    </footer>
+
+    <script>
+// INTRO
+var INTRO_DURATION = 2000;
+window.addEventListener('load', function () {
+    var intro  = document.getElementById('intro');
+    var navbar = document.getElementById('navbar');
+    setTimeout(function () {
+        intro.classList.add('fade-out');
+        navbar.classList.add('visible');
+        intro.addEventListener('transitionend', function () { intro.remove(); }, { once: true });
+    }, INTRO_DURATION);
+});
+
+// HERO LETTER FLIP (A ↔ V, elke 2s)
+(function () {
+    var morph = document.querySelector('.letter-morph');
+    if (!morph) return;
+    setTimeout(function () {
+        morph.classList.add('flipped');
+        setInterval(function () { morph.classList.toggle('flipped'); }, 2000);
+    }, 2800);
+})();
+
+// SLIDER
+(function () {
+    var slides  = document.querySelectorAll('.slide');
+    var dots    = document.querySelectorAll('.dot');
+    var current = 0;
+    var interval;
+    function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+    }
+    interval = setInterval(function () { goTo(current + 1); }, 5000);
+    dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () {
+            clearInterval(interval);
+            goTo(i);
+            interval = setInterval(function () { goTo(current + 1); }, 5000);
+        });
+    });
+    document.getElementById('arrow-prev').addEventListener('click', function () {
+        clearInterval(interval); goTo(current - 1);
+        interval = setInterval(function () { goTo(current + 1); }, 5000);
+    });
+    document.getElementById('arrow-next').addEventListener('click', function () {
+        clearInterval(interval); goTo(current + 1);
+        interval = setInterval(function () { goTo(current + 1); }, 5000);
+    });
+})();
+
+// DIENSTEN HOVER
+(function () {
+    var rows  = document.querySelectorAll('.dienst-row');
+    var descs = document.querySelectorAll('.dienst-desc');
+    function activate(index) {
+        rows.forEach(function (r) { r.classList.remove('active'); });
+        descs.forEach(function (d) { d.classList.remove('active'); });
+        var row  = document.querySelector('.dienst-row[data-index="' + index + '"]');
+        var desc = document.querySelector('.dienst-desc[data-index="' + index + '"]');
+        if (row)  row.classList.add('active');
+        if (desc) desc.classList.add('active');
+    }
+    function clear() {
+        rows.forEach(function (r) { r.classList.remove('active'); });
+        descs.forEach(function (d) { d.classList.remove('active'); });
+    }
+    rows.forEach(function (row) {
+        row.addEventListener('mouseenter', function () {
+            activate(parseInt(row.getAttribute('data-index'), 10));
+        });
+    });
+    document.querySelector('.diensten-list').addEventListener('mouseleave', clear);
+})();
+
+// NAVBAR KLEUR OP SCROLL
+(function () {
+    var navbar       = document.getElementById('navbar');
+    var darkSections = ['tagline-block', 'stats', 'contact-cta'];
+    function updateTheme() {
+        var checkY = 52;
+        var onDark = false;
+        var onHero = false;
+        var hero = document.getElementById('hero');
+        if (hero) {
+            var hr = hero.getBoundingClientRect();
+            if (hr.top <= checkY && hr.bottom > checkY) onHero = true;
+        }
+        if (!onHero) {
+            darkSections.forEach(function (id) {
+                var el = document.getElementById(id);
+                if (!el) return;
+                var r = el.getBoundingClientRect();
+                if (r.top <= checkY && r.bottom > checkY) onDark = true;
+            });
+        }
+        navbar.classList.toggle('on-hero', onHero);
+        navbar.classList.toggle('on-dark', onDark);
+    }
+    window.addEventListener('scroll', updateTheme, { passive: true });
+    updateTheme();
+})();
+
+// COUNTER ANIMATIE
+(function () {
+    var statEls = document.querySelectorAll('.stat-num[data-target]');
+    var animated = false;
+    function animateCounters() {
+        statEls.forEach(function (el) {
+            var target   = parseInt(el.getAttribute('data-target'), 10);
+            var duration = 1600;
+            var start    = null;
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                var progress = Math.min((timestamp - start) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(eased * target) + '+';
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        });
+    }
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting && !animated) { animated = true; animateCounters(); }
+        });
+    }, { threshold: 0.3 });
+    var statsSection = document.getElementById('stats');
+    if (statsSection) observer.observe(statsSection);
+})();
+
+// HAMBURGER MENU
+(function () {
+    var hamburger   = document.getElementById('hamburger');
+    var mobileMenu  = document.getElementById('mobile-menu');
+    var mobileClose = document.getElementById('mobile-close');
+    var mobileLinks = document.querySelectorAll('#mobile-nav a');
+    function openMenu()  { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+    hamburger.addEventListener('click', openMenu);
+    mobileClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+})();
+    </script>
+</body>
+</html>
