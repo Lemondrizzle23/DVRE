@@ -4,36 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diensten — DVRE</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .page-hero {
-            padding: 180px 6% 80px;
-            background: #fff;
-            border-bottom: 1px solid #e8e8e8;
-        }
-        .page-hero-label {
-            font-size: 11px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: #999;
-            margin-bottom: 20px;
-        }
-        .page-hero-title {
-            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
-            font-size: 72px;
-            font-weight: 500;
-            font-stretch: condensed;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #111;
-            line-height: 0.95;
-        }
-
         /* Dienst blokken */
-        #diensten-page { padding: 0; }
+        #diensten-page { padding: 0; padding-top: 84px; }
 
         .dienst-blok {
             display: grid;
@@ -86,21 +60,21 @@
         }
 
         @media (max-width: 768px) {
+            #diensten-page { padding-top: 70px; }
             .dienst-blok { grid-template-columns: 1fr; min-height: auto; }
             .dienst-blok-img { min-height: 280px; order: 0 !important; }
             .dienst-blok-tekst { padding: 48px 5%; }
             .dienst-blok-titel { font-size: 32px; }
-            .page-hero-title { font-size: 48px; }
         }
     </style>
 </head>
 <body>
 
-    <header id="navbar" class="visible" style="background: #fff; position: sticky; top: 0; box-shadow: 0 1px 0 #e8e8e8;">
+    <header id="navbar" class="visible">
         <a href="index.html" id="logo" style="text-decoration:none;"><span>DVRE</span></a>
         <nav id="main-nav">
             <a href="projecten.html">Projecten</a>
-            <a href="diensten.html" style="color:#000; border-bottom: 1.5px solid #000; padding-bottom:2px;">Diensten</a>
+            <a href="diensten.html" class="nav-active">Diensten</a>
             <a href="over.html">Over DVRE</a>
             <a href="contact.html">Contact</a>
         </nav>
@@ -115,11 +89,6 @@
             <a href="over.html">Over DVRE</a>
             <a href="contact.html">Contact</a>
         </nav>
-    </div>
-
-    <div class="page-hero">
-        <p class="page-hero-label">Wat wij doen</p>
-        <h1 class="page-hero-title">Onze diensten</h1>
     </div>
 
     <section id="diensten-page">
@@ -223,18 +192,6 @@
         <div id="footer-copy">© DVRE Studio 2025</div>
     </footer>
 
-    <script>
-    (function () {
-        var hamburger   = document.getElementById('hamburger');
-        var mobileMenu  = document.getElementById('mobile-menu');
-        var mobileClose = document.getElementById('mobile-close');
-        var mobileLinks = document.querySelectorAll('#mobile-nav a');
-        function openMenu()  { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
-        hamburger.addEventListener('click', openMenu);
-        mobileClose.addEventListener('click', closeMenu);
-        mobileLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
-    })();
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
