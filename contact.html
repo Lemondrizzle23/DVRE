@@ -4,40 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — DVRE</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .page-hero {
-            padding: 180px 6% 80px;
-            background: #fff;
-            border-bottom: 1px solid #e8e8e8;
-        }
-        .page-hero-label {
-            font-size: 11px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: #999;
-            margin-bottom: 20px;
-        }
-        .page-hero-title {
-            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
-            font-size: 72px;
-            font-weight: 500;
-            font-stretch: condensed;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #111;
-            line-height: 0.95;
-        }
-
         /* Contact layout */
         #contact-page {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0;
-            min-height: 70vh;
+            min-height: 80vh;
+            padding-top: 84px;
         }
 
         /* Linker kolom — info */
@@ -163,7 +138,6 @@
 
         .form-submit:hover { background: #333; transform: translateY(-1px); }
 
-        /* Succes bericht */
         .form-success {
             display: none;
             padding: 20px;
@@ -175,23 +149,22 @@
         }
 
         @media (max-width: 768px) {
-            #contact-page { grid-template-columns: 1fr; }
+            #contact-page { grid-template-columns: 1fr; padding-top: 70px; }
             .contact-info { padding: 56px 5%; }
             .contact-form-wrap { padding: 56px 5%; }
             .form-row { grid-template-columns: 1fr; gap: 24px; }
-            .page-hero-title { font-size: 48px; }
         }
     </style>
 </head>
 <body>
 
-    <header id="navbar" class="visible" style="background: #fff; position: sticky; top: 0; box-shadow: 0 1px 0 #e8e8e8;">
+    <header id="navbar" class="visible">
         <a href="index.html" id="logo" style="text-decoration:none;"><span>DVRE</span></a>
         <nav id="main-nav">
             <a href="projecten.html">Projecten</a>
             <a href="diensten.html">Diensten</a>
             <a href="over.html">Over DVRE</a>
-            <a href="contact.html" style="color:#000; border-bottom: 1.5px solid #000; padding-bottom:2px;">Contact</a>
+            <a href="contact.html" class="nav-active">Contact</a>
         </nav>
         <button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </header>
@@ -204,11 +177,6 @@
             <a href="over.html">Over DVRE</a>
             <a href="contact.html">Contact</a>
         </nav>
-    </div>
-
-    <div class="page-hero">
-        <p class="page-hero-label">Laten we praten</p>
-        <h1 class="page-hero-title">Contact</h1>
     </div>
 
     <section id="contact-page">
@@ -322,11 +290,10 @@
     </footer>
 
     <script>
-    // Formulier submit
     document.getElementById('contact-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        var naam  = document.getElementById('naam').value.trim();
-        var email = document.getElementById('email').value.trim();
+        var naam    = document.getElementById('naam').value.trim();
+        var email   = document.getElementById('email').value.trim();
         var bericht = document.getElementById('bericht').value.trim();
         if (!naam || !email || !bericht) {
             alert('Vul naam, e-mailadres en bericht in.');
@@ -335,19 +302,7 @@
         this.style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
     });
-
-    // Hamburger
-    (function () {
-        var hamburger   = document.getElementById('hamburger');
-        var mobileMenu  = document.getElementById('mobile-menu');
-        var mobileClose = document.getElementById('mobile-close');
-        var mobileLinks = document.querySelectorAll('#mobile-nav a');
-        function openMenu()  { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
-        hamburger.addEventListener('click', openMenu);
-        mobileClose.addEventListener('click', closeMenu);
-        mobileLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
-    })();
     </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

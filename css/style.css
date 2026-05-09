@@ -137,6 +137,13 @@ nav#main-nav a {
 
 nav#main-nav a:hover { opacity: 1; }
 
+/* Actieve paginalink */
+nav#main-nav a.nav-active {
+    border-bottom: 1.5px solid currentColor;
+    padding-bottom: 2px;
+    opacity: 1;
+}
+
 /* Navbar over hero slider — logo doorzichtig */
 #navbar.on-hero #logo { background: transparent; }
 #navbar.on-hero #logo span { color: #fff; }
@@ -794,4 +801,131 @@ section { padding: 96px 6%; }
     /* Footer */
     #footer { grid-template-columns: 1fr; gap: 32px; }
     #footer-copy { position: static; }
+}
+
+/* =====================
+   PROJECTEN PAGINA
+   ===================== */
+#projecten-section {
+    padding-top: 84px;
+}
+
+/* Volledig breed project */
+.proj-full {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.proj-full .proj-img {
+    width: 100%;
+    aspect-ratio: 21/9;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.9s ease;
+    display: block;
+}
+
+.proj-full:hover .proj-img { transform: scale(1.02); }
+
+/* 2-koloms rij */
+.proj-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    background: #e8e8e8;
+}
+
+/* Project kaart */
+.proj-card {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+
+.proj-card .proj-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.9s ease;
+    display: block;
+}
+
+.proj-card:hover .proj-img { transform: scale(1.04); }
+
+/* Overlay met tekst onderaan */
+.proj-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 56px 36px 28px;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.proj-type-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    font-weight: 600;
+}
+
+.proj-title-label {
+    font-size: 17px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.01em;
+}
+
+/* Quote blok */
+.proj-quote-block {
+    padding: 100px 8%;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+}
+
+.proj-quote-text {
+    font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+    font-size: 56px;
+    font-weight: 500;
+    font-stretch: condensed;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1.05;
+    max-width: 820px;
+}
+
+.proj-quote-attr {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    font-weight: 600;
+}
+
+/* Responsive projecten pagina */
+@media (max-width: 768px) {
+    #projecten-section { padding-top: 70px; }
+    .proj-full .proj-img { aspect-ratio: 4/3; }
+    .proj-duo { grid-template-columns: 1fr; }
+    .proj-card .proj-img { aspect-ratio: 4/3; }
+    .proj-quote-text { font-size: 36px; }
+    .proj-quote-block { padding: 64px 5%; }
+}
+
+/* =====================
+   SUBPAGINA SECTIE OFFSET
+   ===================== */
+.subpage-start {
+    padding-top: 100px;
 }

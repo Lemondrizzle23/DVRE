@@ -4,34 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Over DVRE</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .page-hero {
-            padding: 180px 6% 80px;
-            background: #fff;
-            border-bottom: 1px solid #e8e8e8;
-        }
-        .page-hero-label {
-            font-size: 11px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: #999;
-            margin-bottom: 20px;
-        }
-        .page-hero-title {
-            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
-            font-size: 72px;
-            font-weight: 500;
-            font-stretch: condensed;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #111;
-            line-height: 0.95;
-        }
-
         /* Intro sectie */
         #over-intro {
             display: grid;
@@ -39,6 +13,7 @@
             gap: 80px;
             align-items: center;
             padding: 96px 6%;
+            padding-top: 120px;
         }
 
         .over-intro-img {
@@ -47,8 +22,6 @@
             background-size: cover;
             background-position: center;
         }
-
-        .over-intro-tekst {}
 
         .over-lead {
             font-size: 32px;
@@ -146,23 +119,22 @@
         }
 
         @media (max-width: 768px) {
-            #over-intro { grid-template-columns: 1fr; gap: 40px; }
+            #over-intro { grid-template-columns: 1fr; gap: 40px; padding-top: 96px; }
             .over-intro-img { aspect-ratio: 4/3; }
             .filosofie-inner { grid-template-columns: 1fr; gap: 40px; }
             .filosofie-label { position: static; }
             .waarden-grid { grid-template-columns: 1fr; }
-            .page-hero-title { font-size: 48px; }
         }
     </style>
 </head>
 <body>
 
-    <header id="navbar" class="visible" style="background: #fff; position: sticky; top: 0; box-shadow: 0 1px 0 #e8e8e8;">
+    <header id="navbar" class="visible">
         <a href="index.html" id="logo" style="text-decoration:none;"><span>DVRE</span></a>
         <nav id="main-nav">
             <a href="projecten.html">Projecten</a>
             <a href="diensten.html">Diensten</a>
-            <a href="over.html" style="color:#000; border-bottom: 1.5px solid #000; padding-bottom:2px;">Over DVRE</a>
+            <a href="over.html" class="nav-active">Over DVRE</a>
             <a href="contact.html">Contact</a>
         </nav>
         <button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -176,11 +148,6 @@
             <a href="over.html">Over DVRE</a>
             <a href="contact.html">Contact</a>
         </nav>
-    </div>
-
-    <div class="page-hero">
-        <p class="page-hero-label">Wie wij zijn</p>
-        <h1 class="page-hero-title">Over DVRE</h1>
     </div>
 
     <!-- Intro -->
@@ -205,7 +172,7 @@
     </section>
 
     <!-- Filosofie -->
-    <section id="filosofie">
+    <section id="filosofie" class="dark-section">
         <div class="filosofie-inner">
             <div class="filosofie-label">Onze<br>filosofie</div>
             <div class="filosofie-tekst">
@@ -269,45 +236,6 @@
         <div id="footer-copy">© DVRE Studio 2025</div>
     </footer>
 
-    <script>
-    // Counter
-    (function () {
-        var statEls = document.querySelectorAll('.stat-num[data-target]');
-        var animated = false;
-        function animateCounters() {
-            statEls.forEach(function (el) {
-                var target = parseInt(el.getAttribute('data-target'), 10);
-                var duration = 1600; var start = null;
-                function step(timestamp) {
-                    if (!start) start = timestamp;
-                    var progress = Math.min((timestamp - start) / duration, 1);
-                    var eased = 1 - Math.pow(1 - progress, 3);
-                    el.textContent = Math.floor(eased * target) + '+';
-                    if (progress < 1) requestAnimationFrame(step);
-                }
-                requestAnimationFrame(step);
-            });
-        }
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting && !animated) { animated = true; animateCounters(); }
-            });
-        }, { threshold: 0.3 });
-        var statsSection = document.getElementById('stats');
-        if (statsSection) observer.observe(statsSection);
-    })();
-    // Hamburger
-    (function () {
-        var hamburger   = document.getElementById('hamburger');
-        var mobileMenu  = document.getElementById('mobile-menu');
-        var mobileClose = document.getElementById('mobile-close');
-        var mobileLinks = document.querySelectorAll('#mobile-nav a');
-        function openMenu()  { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
-        hamburger.addEventListener('click', openMenu);
-        mobileClose.addEventListener('click', closeMenu);
-        mobileLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
-    })();
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

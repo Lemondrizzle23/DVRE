@@ -7,11 +7,16 @@ window.addEventListener('load', function () {
     var intro  = document.getElementById('intro');
     var navbar = document.getElementById('navbar');
 
-    setTimeout(function () {
-        intro.classList.add('fade-out');
-        navbar.classList.add('visible');
-        intro.addEventListener('transitionend', function () { intro.remove(); }, { once: true });
-    }, INTRO_DURATION);
+    if (intro) {
+        setTimeout(function () {
+            intro.classList.add('fade-out');
+            navbar.classList.add('visible');
+            intro.addEventListener('transitionend', function () { intro.remove(); }, { once: true });
+        }, INTRO_DURATION);
+    } else {
+        // Subpagina's: direct zichtbaar
+        if (navbar) navbar.classList.add('visible');
+    }
 });
 
 // =====================
@@ -35,6 +40,7 @@ window.addEventListener('load', function () {
 (function () {
     var slides  = document.querySelectorAll('.slide');
     var dots    = document.querySelectorAll('.dot');
+    if (!slides.length) return;
     var current = 0;
     var interval;
 
@@ -56,13 +62,14 @@ window.addEventListener('load', function () {
         });
     });
 
-    document.getElementById('arrow-prev').addEventListener('click', function () {
+    var prev = document.getElementById('arrow-prev');
+    var next = document.getElementById('arrow-next');
+    if (prev) prev.addEventListener('click', function () {
         clearInterval(interval);
         goTo(current - 1);
         interval = setInterval(function () { goTo(current + 1); }, 5000);
     });
-
-    document.getElementById('arrow-next').addEventListener('click', function () {
+    if (next) next.addEventListener('click', function () {
         clearInterval(interval);
         goTo(current + 1);
         interval = setInterval(function () { goTo(current + 1); }, 5000);
@@ -75,7 +82,8 @@ window.addEventListener('load', function () {
 (function () {
     var rows  = document.querySelectorAll('.dienst-row');
     var descs = document.querySelectorAll('.dienst-desc');
-    var imgs  = document.querySelectorAll('.dienst-img');
+    var list  = document.querySelector('.diensten-list');
+    if (!rows.length || !list) return;
 
     function activate(index) {
         rows.forEach(function (r) { r.classList.remove('active'); });
@@ -97,7 +105,7 @@ window.addEventListener('load', function () {
         });
     });
 
-    document.querySelector('.diensten-list').addEventListener('mouseleave', clear);
+    list.addEventListener('mouseleave', clear);
 })();
 
 // =====================
@@ -120,9 +128,15 @@ window.addEventListener('load', function () {
         }
 
         if (!onHero) {
+            // Check via ID
             darkSections.forEach(function (id) {
                 var el = document.getElementById(id);
                 if (!el) return;
+                var r = el.getBoundingClientRect();
+                if (r.top <= checkY && r.bottom > checkY) onDark = true;
+            });
+            // Check via class (voor elementen zonder vaste ID)
+            document.querySelectorAll('.dark-section').forEach(function (el) {
                 var r = el.getBoundingClientRect();
                 if (r.top <= checkY && r.bottom > checkY) onDark = true;
             });
