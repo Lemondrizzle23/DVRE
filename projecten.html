@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projecten — DVRE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Page hero */
+        .page-hero {
+            padding: 180px 6% 80px;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .page-hero-label {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .page-hero-title {
+            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+            font-size: 72px;
+            font-weight: 500;
+            font-stretch: condensed;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #111;
+            line-height: 0.95;
+        }
+
+        /* Filter */
+        .project-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 40px 6% 0;
+        }
+        .filter-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #999;
+            transition: all 0.2s ease;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #111;
+            border-color: #111;
+            color: #fff;
+        }
+
+        /* Grid — ruimer dan homepage */
+        #projecten-page { background: #fff; padding: 48px 6% 96px; }
+        .projecten-grid-full {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .projecten-grid-full .project-img { aspect-ratio: 3/4; }
+
+        /* Featured project — breed */
+        .project-featured {
+            grid-column: 1 / -1;
+        }
+        .project-featured .project-img {
+            aspect-ratio: 16/7;
+        }
+
+        @media (max-width: 900px) {
+            .projecten-grid-full { grid-template-columns: repeat(2, 1fr); }
+            .project-featured .project-img { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 600px) {
+            .page-hero-title { font-size: 48px; }
+            .projecten-grid-full { grid-template-columns: 1fr; }
+            .project-featured { grid-column: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigatiebalk -->
+    <header id="navbar" class="visible" style="background: #fff; position: sticky; top: 0; box-shadow: 0 1px 0 #e8e8e8;">
+        <a href="index.html" id="logo" style="text-decoration:none;"><span>DVRE</span></a>
+        <nav id="main-nav">
+            <a href="projecten.html" style="color:#000; border-bottom: 1.5px solid #000; padding-bottom:2px;">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- Mobiel menu -->
+    <div id="mobile-menu">
+        <button id="mobile-close">✕</button>
+        <nav id="mobile-nav">
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Page hero -->
+    <div class="page-hero">
+        <p class="page-hero-label">Ons werk</p>
+        <h1 class="page-hero-title">Projecten</h1>
+    </div>
+
+    <!-- Filter -->
+    <div class="project-filters">
+        <button class="filter-btn active">Alles</button>
+        <button class="filter-btn">Architectuur</button>
+        <button class="filter-btn">Verbouwing</button>
+        <button class="filter-btn">Interieur</button>
+        <button class="filter-btn">Splitsing</button>
+    </div>
+
+    <!-- Projecten grid -->
+    <section id="projecten-page">
+        <div class="projecten-grid-full">
+
+            <!-- Featured -->
+            <a class="project-card project-featured" href="#">
+                <div class="project-img" style="background-image: url('images/Slider/Slider 01.png');"></div>
+                <div class="project-info">
+                    <div>
+                        <p class="project-type">Verbouwing &amp; Uitbreiding</p>
+                        <p class="project-loc">Woning, Amsterdam</p>
+                    </div>
+                    <span class="project-arrow">→</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="#">
+                <div class="project-img" style="background-image: url('images/Projecten homepage/Project 01.png');"></div>
+                <div class="project-info">
+                    <div>
+                        <p class="project-type">Architectuur</p>
+                        <p class="project-loc">Woning, Amsterdam</p>
+                    </div>
+                    <span class="project-arrow">→</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="#">
+                <div class="project-img" style="background-image: url('images/Projecten homepage/Project 02.png');"></div>
+                <div class="project-info">
+                    <div>
+                        <p class="project-type">Splitsing &amp; Transformatie</p>
+                        <p class="project-loc">Appartementen, Utrecht</p>
+                    </div>
+                    <span class="project-arrow">→</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="#">
+                <div class="project-img" style="background-image: url('images/Projecten homepage/Project 03.png');"></div>
+                <div class="project-info">
+                    <div>
+                        <p class="project-type">Vergunning &amp; Nieuwbouw</p>
+                        <p class="project-loc">Woning, Haarlem</p>
+                    </div>
+                    <span class="project-arrow">→</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="#">
+                <div class="project-img" style="background-image: url('images/Slider/Slider 02.png');"></div>
+                <div class="project-info">
+                    <div>
+                        <p class="project-type">Interieurontwerp</p>
+                        <p class="project-loc">Appartement, Rotterdam</p>
+                    </div>
+                    <span class="project-arrow">→</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="#">
+                <div class="project-img" style="background-image: url('images/Slider/Slider 03.png');"></div>
+                <div class="project-info">
+                    <div>
+                        <p class="project-type">Verbouwing</p>
+                        <p class="project-loc">Kantoor, Amsterdam</p>
+                    </div>
+                    <span class="project-arrow">→</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div id="footer-logo"><div id="footer-logo-box"><span>DVRE</span></div></div>
+        <div class="footer-col">
+            <p class="footer-heading">Navigatie</p>
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Socials</p>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Contact</p>
+            <a href="mailto:info@dvre.studio">info@dvre.studio</a>
+            <a href="tel:+31612345678">+31 6 12345678</a>
+            <span>Nederland</span>
+        </div>
+        <div id="footer-copy">© DVRE Studio 2025</div>
+    </footer>
+
+    <script>
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+        });
+    });
+    // Hamburger
+    (function () {
+        var hamburger   = document.getElementById('hamburger');
+        var mobileMenu  = document.getElementById('mobile-menu');
+        var mobileClose = document.getElementById('mobile-close');
+        var mobileLinks = document.querySelectorAll('#mobile-nav a');
+        function openMenu()  { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+        hamburger.addEventListener('click', openMenu);
+        mobileClose.addEventListener('click', closeMenu);
+        mobileLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+    })();
+    </script>
+</body>
+</html>

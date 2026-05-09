@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over DVRE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-hero {
+            padding: 180px 6% 80px;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .page-hero-label {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .page-hero-title {
+            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+            font-size: 72px;
+            font-weight: 500;
+            font-stretch: condensed;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #111;
+            line-height: 0.95;
+        }
+
+        /* Intro sectie */
+        #over-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 96px 6%;
+        }
+
+        .over-intro-img {
+            aspect-ratio: 4/5;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .over-intro-tekst {}
+
+        .over-lead {
+            font-size: 32px;
+            font-weight: 300;
+            line-height: 1.45;
+            letter-spacing: -0.01em;
+            color: #111;
+            margin-bottom: 32px;
+        }
+
+        .over-body {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.85;
+            color: #555;
+            margin-bottom: 16px;
+        }
+
+        /* Filosofie */
+        #filosofie {
+            background: #111;
+            color: #fff;
+            padding: 96px 6%;
+        }
+
+        .filosofie-inner {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .filosofie-label {
+            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+            font-size: 42px;
+            font-weight: 500;
+            font-stretch: condensed;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #fff;
+            position: sticky;
+            top: 80px;
+        }
+
+        .filosofie-tekst p {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 24px;
+        }
+
+        .filosofie-tekst p:last-child { margin-bottom: 0; }
+
+        /* Waarden */
+        #waarden { padding: 96px 6%; background: #fff; }
+
+        .waarden-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: #e8e8e8;
+            margin-top: 52px;
+        }
+
+        .waarde-item {
+            background: #fff;
+            padding: 48px 40px;
+        }
+
+        .waarde-num {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            color: #bbb;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .waarde-titel {
+            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+            font-size: 28px;
+            font-weight: 500;
+            font-stretch: condensed;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #111;
+            margin-bottom: 16px;
+        }
+
+        .waarde-tekst {
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.75;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            #over-intro { grid-template-columns: 1fr; gap: 40px; }
+            .over-intro-img { aspect-ratio: 4/3; }
+            .filosofie-inner { grid-template-columns: 1fr; gap: 40px; }
+            .filosofie-label { position: static; }
+            .waarden-grid { grid-template-columns: 1fr; }
+            .page-hero-title { font-size: 48px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="navbar" class="visible" style="background: #fff; position: sticky; top: 0; box-shadow: 0 1px 0 #e8e8e8;">
+        <a href="index.html" id="logo" style="text-decoration:none;"><span>DVRE</span></a>
+        <nav id="main-nav">
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html" style="color:#000; border-bottom: 1.5px solid #000; padding-bottom:2px;">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </header>
+
+    <div id="mobile-menu">
+        <button id="mobile-close">✕</button>
+        <nav id="mobile-nav">
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <div class="page-hero">
+        <p class="page-hero-label">Wie wij zijn</p>
+        <h1 class="page-hero-title">Over DVRE</h1>
+    </div>
+
+    <!-- Intro -->
+    <section id="over-intro">
+        <div>
+            <p class="over-lead">DVRE is ontstaan vanuit de behoefte om te creëren in plaats van te aarzelen.</p>
+            <p class="over-body">Wij zijn een architectuurstudio die gelooft dat goed ontwerp niet begint met lijnen op papier, maar met begrip van de mens, de plek en de ambitie. Elk project is anders. Elk traject uniek.</p>
+            <p class="over-body">Van kleine verbouwing tot complexe transformatie — DVRE denkt mee, ontwerpt door en begeleidt tot de laatste spijker. Niet als opdrachtnemer, maar als partner.</p>
+            <br>
+            <a href="contact.html" class="btn-secondary">Kom in contact &nbsp;→</a>
+        </div>
+        <div class="over-intro-img" style="background-image: url('images/Over ons/Over ons.png');"></div>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats">
+        <div class="stat"><span class="stat-num" data-target="20">0</span><span class="stat-label">Projecten<br>gerealiseerd</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="10">0</span><span class="stat-label">Vergunningen<br>per jaar</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="5">0</span><span class="stat-label">Jaar ervaring<br>in ontwerp &amp; realisatie</span></div>
+    </section>
+
+    <!-- Filosofie -->
+    <section id="filosofie">
+        <div class="filosofie-inner">
+            <div class="filosofie-label">Onze<br>filosofie</div>
+            <div class="filosofie-tekst">
+                <p>Wij geloven dat de beste architectuur niet opvalt, maar voelt. Ruimtes die kloppen. Proporties die kalmeren. Materialen die eerlijk zijn. Ontwerp dat niet schreeuwt, maar fluistert.</p>
+                <p>Dare to be creative betekent voor ons: durf te kiezen. Durf af te wijken van het gemiddelde. Durf te investeren in iets dat over tien jaar nog beter is dan vandaag. Wij helpen je daarbij — met kennis, visie en de rust om het goed te doen.</p>
+                <p>DVRE staat voor precisie zonder starheid, ambitie zonder ego, en ontwerp dat dient.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waarden -->
+    <section id="waarden">
+        <span class="section-label">Onze waarden</span>
+        <div class="waarden-grid">
+            <div class="waarde-item">
+                <p class="waarde-num">01</p>
+                <h3 class="waarde-titel">Luisteren eerst</h3>
+                <p class="waarde-tekst">Elk project begint met begrip. We nemen de tijd om te verstaan wat je wilt, wat de plek vraagt, en wat echt nodig is.</p>
+            </div>
+            <div class="waarde-item">
+                <p class="waarde-num">02</p>
+                <h3 class="waarde-titel">Eerlijk ontwerp</h3>
+                <p class="waarde-tekst">Geen overbodige complexiteit. Ontwerp dat klopt, dat werkbaar is, en dat de tand des tijds doorstaat.</p>
+            </div>
+            <div class="waarde-item">
+                <p class="waarde-num">03</p>
+                <h3 class="waarde-titel">Volledige begeleiding</h3>
+                <p class="waarde-tekst">Van eerste schets tot oplevering — wij zijn aanwezig. Je hoeft nooit alleen te navigeren in een complex proces.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact-cta">
+        <div id="cta-text">
+            <p>Heb je plannen?</p>
+            <p><strong>Wij maken ze mogelijk.</strong></p>
+        </div>
+        <a href="contact.html" class="btn-primary btn-outline">Neem contact op &nbsp;→</a>
+    </section>
+
+    <footer id="footer">
+        <div id="footer-logo"><div id="footer-logo-box"><span>DVRE</span></div></div>
+        <div class="footer-col">
+            <p class="footer-heading">Navigatie</p>
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Socials</p>
+            <a href="#">Instagram</a><a href="#">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Contact</p>
+            <a href="mailto:info@dvre.studio">info@dvre.studio</a>
+            <a href="tel:+31612345678">+31 6 12345678</a>
+            <span>Nederland</span>
+        </div>
+        <div id="footer-copy">© DVRE Studio 2025</div>
+    </footer>
+
+    <script>
+    // Counter
+    (function () {
+        var statEls = document.querySelectorAll('.stat-num[data-target]');
+        var animated = false;
+        function animateCounters() {
+            statEls.forEach(function (el) {
+                var target = parseInt(el.getAttribute('data-target'), 10);
+                var duration = 1600; var start = null;
+                function step(timestamp) {
+                    if (!start) start = timestamp;
+                    var progress = Math.min((timestamp - start) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.floor(eased * target) + '+';
+                    if (progress < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            });
+        }
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting && !animated) { animated = true; animateCounters(); }
+            });
+        }, { threshold: 0.3 });
+        var statsSection = document.getElementById('stats');
+        if (statsSection) observer.observe(statsSection);
+    })();
+    // Hamburger
+    (function () {
+        var hamburger   = document.getElementById('hamburger');
+        var mobileMenu  = document.getElementById('mobile-menu');
+        var mobileClose = document.getElementById('mobile-close');
+        var mobileLinks = document.querySelectorAll('#mobile-nav a');
+        function openMenu()  { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+        hamburger.addEventListener('click', openMenu);
+        mobileClose.addEventListener('click', closeMenu);
+        mobileLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+    })();
+    </script>
+</body>
+</html>

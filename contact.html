@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — DVRE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-hero {
+            padding: 180px 6% 80px;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .page-hero-label {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .page-hero-title {
+            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+            font-size: 72px;
+            font-weight: 500;
+            font-stretch: condensed;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #111;
+            line-height: 0.95;
+        }
+
+        /* Contact layout */
+        #contact-page {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 70vh;
+        }
+
+        /* Linker kolom — info */
+        .contact-info {
+            padding: 80px 8% 80px 6%;
+            background: #f7f7f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-intro {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.45;
+            color: #111;
+            margin-bottom: 56px;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-detail-group { margin-bottom: 40px; }
+
+        .contact-detail-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .contact-detail-value {
+            font-size: 16px;
+            font-weight: 300;
+            color: #111;
+            text-decoration: none;
+            display: block;
+            line-height: 1.6;
+            transition: opacity 0.2s;
+        }
+
+        .contact-detail-value:hover { opacity: 0.6; }
+
+        /* Rechter kolom — formulier */
+        .contact-form-wrap {
+            padding: 80px 6% 80px 8%;
+            background: #fff;
+        }
+
+        .form-title {
+            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+            font-size: 32px;
+            font-weight: 500;
+            font-stretch: condensed;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #111;
+            margin-bottom: 40px;
+        }
+
+        .contact-form { display: flex; flex-direction: column; gap: 24px; }
+
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+        .form-group label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            border: none;
+            border-bottom: 1px solid #ddd;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: 300;
+            font-family: 'Open Sans', Arial, sans-serif;
+            color: #111;
+            background: transparent;
+            outline: none;
+            transition: border-color 0.2s ease;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-bottom-color: #111;
+        }
+
+        .form-group textarea {
+            resize: none;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        .form-group select { cursor: pointer; color: #111; }
+        .form-group select option { color: #111; }
+
+        .form-submit {
+            display: inline-block;
+            background: #111;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            border: none;
+            padding: 16px 40px;
+            cursor: pointer;
+            font-family: 'Open Sans', Arial, sans-serif;
+            transition: background 0.2s ease, transform 0.15s ease;
+            margin-top: 8px;
+            align-self: flex-start;
+        }
+
+        .form-submit:hover { background: #333; transform: translateY(-1px); }
+
+        /* Succes bericht */
+        .form-success {
+            display: none;
+            padding: 20px;
+            background: #f0f7f0;
+            border-left: 3px solid #4a9e4a;
+            font-size: 15px;
+            font-weight: 300;
+            color: #2d6a2d;
+        }
+
+        @media (max-width: 768px) {
+            #contact-page { grid-template-columns: 1fr; }
+            .contact-info { padding: 56px 5%; }
+            .contact-form-wrap { padding: 56px 5%; }
+            .form-row { grid-template-columns: 1fr; gap: 24px; }
+            .page-hero-title { font-size: 48px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="navbar" class="visible" style="background: #fff; position: sticky; top: 0; box-shadow: 0 1px 0 #e8e8e8;">
+        <a href="index.html" id="logo" style="text-decoration:none;"><span>DVRE</span></a>
+        <nav id="main-nav">
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html" style="color:#000; border-bottom: 1.5px solid #000; padding-bottom:2px;">Contact</a>
+        </nav>
+        <button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </header>
+
+    <div id="mobile-menu">
+        <button id="mobile-close">✕</button>
+        <nav id="mobile-nav">
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <div class="page-hero">
+        <p class="page-hero-label">Laten we praten</p>
+        <h1 class="page-hero-title">Contact</h1>
+    </div>
+
+    <section id="contact-page">
+
+        <!-- Info links -->
+        <div class="contact-info">
+            <div>
+                <p class="contact-intro">Heb je een plan, een vraag of een idee? We horen het graag.</p>
+
+                <div class="contact-detail-group">
+                    <p class="contact-detail-label">E-mail</p>
+                    <a href="mailto:info@dvre.studio" class="contact-detail-value">info@dvre.studio</a>
+                </div>
+
+                <div class="contact-detail-group">
+                    <p class="contact-detail-label">Telefoon</p>
+                    <a href="tel:+31612345678" class="contact-detail-value">+31 6 12345678</a>
+                </div>
+
+                <div class="contact-detail-group">
+                    <p class="contact-detail-label">Locatie</p>
+                    <span class="contact-detail-value">Nederland</span>
+                </div>
+
+                <div class="contact-detail-group">
+                    <p class="contact-detail-label">Socials</p>
+                    <a href="#" class="contact-detail-value">Instagram</a>
+                    <a href="#" class="contact-detail-value">LinkedIn</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 64px;">
+                <p style="font-size:13px; color:#aaa; line-height:1.7; font-weight:300;">
+                    Reactietijd: binnen 2 werkdagen.<br>
+                    Voor spoedeisende vragen bel ons direct.
+                </p>
+            </div>
+        </div>
+
+        <!-- Formulier rechts -->
+        <div class="contact-form-wrap">
+            <p class="form-title">Stuur een bericht</p>
+
+            <div class="form-success" id="form-success">
+                Bedankt voor je bericht! We nemen binnen 2 werkdagen contact met je op.
+            </div>
+
+            <form class="contact-form" id="contact-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="naam">Naam *</label>
+                        <input type="text" id="naam" name="naam" placeholder="Jan de Vries" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mailadres *</label>
+                        <input type="email" id="email" name="email" placeholder="jan@email.nl" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefoon">Telefoonnummer</label>
+                        <input type="tel" id="telefoon" name="telefoon" placeholder="+31 6 00000000">
+                    </div>
+                    <div class="form-group">
+                        <label for="dienst">Waarmee kunnen wij helpen?</label>
+                        <select id="dienst" name="dienst">
+                            <option value="">Selecteer een dienst</option>
+                            <option value="architectuur">Architectuur</option>
+                            <option value="interieur">Interieurontwerp</option>
+                            <option value="vergunning">Omgevingsvergunning</option>
+                            <option value="verbouwing">Verbouwing &amp; Transformatie</option>
+                            <option value="splitsing">Splitsing</option>
+                            <option value="visualisatie">Visualisatie</option>
+                            <option value="anders">Anders</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bericht">Bericht *</label>
+                    <textarea id="bericht" name="bericht" placeholder="Vertel ons over jouw project of vraag..." required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Verstuur bericht &nbsp;→</button>
+            </form>
+        </div>
+
+    </section>
+
+    <footer id="footer">
+        <div id="footer-logo"><div id="footer-logo-box"><span>DVRE</span></div></div>
+        <div class="footer-col">
+            <p class="footer-heading">Navigatie</p>
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Socials</p>
+            <a href="#">Instagram</a><a href="#">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Contact</p>
+            <a href="mailto:info@dvre.studio">info@dvre.studio</a>
+            <a href="tel:+31612345678">+31 6 12345678</a>
+            <span>Nederland</span>
+        </div>
+        <div id="footer-copy">© DVRE Studio 2025</div>
+    </footer>
+
+    <script>
+    // Formulier submit
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var naam  = document.getElementById('naam').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var bericht = document.getElementById('bericht').value.trim();
+        if (!naam || !email || !bericht) {
+            alert('Vul naam, e-mailadres en bericht in.');
+            return;
+        }
+        this.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+    });
+
+    // Hamburger
+    (function () {
+        var hamburger   = document.getElementById('hamburger');
+        var mobileMenu  = document.getElementById('mobile-menu');
+        var mobileClose = document.getElementById('mobile-close');
+        var mobileLinks = document.querySelectorAll('#mobile-nav a');
+        function openMenu()  { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+        hamburger.addEventListener('click', openMenu);
+        mobileClose.addEventListener('click', closeMenu);
+        mobileLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+    })();
+    </script>
+</body>
+</html>

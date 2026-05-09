@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diensten — DVRE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-hero {
+            padding: 180px 6% 80px;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .page-hero-label {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .page-hero-title {
+            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+            font-size: 72px;
+            font-weight: 500;
+            font-stretch: condensed;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #111;
+            line-height: 0.95;
+        }
+
+        /* Dienst blokken */
+        #diensten-page { padding: 0; }
+
+        .dienst-blok {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 520px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .dienst-blok:nth-child(even) .dienst-blok-img { order: -1; }
+
+        .dienst-blok-img {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .dienst-blok-tekst {
+            padding: 80px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dienst-blok-num {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            color: #bbb;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .dienst-blok-titel {
+            font-family: 'Futura PT Condensed', 'Futura PT', 'Futura', 'Century Gothic', Arial Narrow, sans-serif;
+            font-size: 42px;
+            font-weight: 500;
+            font-stretch: condensed;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #111;
+            margin-bottom: 24px;
+            line-height: 1;
+        }
+
+        .dienst-blok-tekst p {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #555;
+            max-width: 440px;
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .dienst-blok { grid-template-columns: 1fr; min-height: auto; }
+            .dienst-blok-img { min-height: 280px; order: 0 !important; }
+            .dienst-blok-tekst { padding: 48px 5%; }
+            .dienst-blok-titel { font-size: 32px; }
+            .page-hero-title { font-size: 48px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="navbar" class="visible" style="background: #fff; position: sticky; top: 0; box-shadow: 0 1px 0 #e8e8e8;">
+        <a href="index.html" id="logo" style="text-decoration:none;"><span>DVRE</span></a>
+        <nav id="main-nav">
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html" style="color:#000; border-bottom: 1.5px solid #000; padding-bottom:2px;">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </header>
+
+    <div id="mobile-menu">
+        <button id="mobile-close">✕</button>
+        <nav id="mobile-nav">
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <div class="page-hero">
+        <p class="page-hero-label">Wat wij doen</p>
+        <h1 class="page-hero-title">Onze diensten</h1>
+    </div>
+
+    <section id="diensten-page">
+
+        <div class="dienst-blok">
+            <div class="dienst-blok-img" style="background-image: url('images/Slider/Slider 01.png');"></div>
+            <div class="dienst-blok-tekst">
+                <span class="dienst-blok-num">01</span>
+                <h2 class="dienst-blok-titel">Architectuur</h2>
+                <p>Goed ontwerp begint met luisteren. Bij DVRE vertalen we jouw wensen, de plek en de context naar architectuur die klopt — niet alleen op papier, maar ook in gebruik. We ontwerpen gebouwen die toekomstbestendig zijn en er over tien jaar nog beter uitzien dan op dag één.</p>
+                <p>Van schetsontwerp tot uitvoeringsgereed bestek — wij begeleiden het volledige traject.</p>
+                <a href="contact.html" class="btn-secondary">Neem contact op &nbsp;→</a>
+            </div>
+        </div>
+
+        <div class="dienst-blok">
+            <div class="dienst-blok-img" style="background-image: url('images/Onze diensten/Foto 01.png');"></div>
+            <div class="dienst-blok-tekst">
+                <span class="dienst-blok-num">02</span>
+                <h2 class="dienst-blok-titel">Interieurontwerp</h2>
+                <p>Een ruimte bepaalt hoe je je voelt. Wij ontwerpen interieurs die niet alleen mooi zijn, maar die werken. Licht, materiaal en proporties — alles is bewust gekozen.</p>
+                <p>Het resultaat is een interieur dat ademt, dat uitnodigt, en dat van jou is.</p>
+                <a href="contact.html" class="btn-secondary">Neem contact op &nbsp;→</a>
+            </div>
+        </div>
+
+        <div class="dienst-blok">
+            <div class="dienst-blok-img" style="background-image: url('images/Slider/Slider 02.png');"></div>
+            <div class="dienst-blok-tekst">
+                <span class="dienst-blok-num">03</span>
+                <h2 class="dienst-blok-titel">Omgevingsvergunningen</h2>
+                <p>Vergunningen zijn het fundament van elk bouwproject. Bij DVRE begeleiden we het traject van vooroverleg tot definitieve beschikking.</p>
+                <p>We kennen de regels, weten hoe gemeenten denken, en zorgen dat jouw project door de poort komt — zonder verrassingen.</p>
+                <a href="contact.html" class="btn-secondary">Neem contact op &nbsp;→</a>
+            </div>
+        </div>
+
+        <div class="dienst-blok">
+            <div class="dienst-blok-img" style="background-image: url('images/Projecten homepage/Project 01.png');"></div>
+            <div class="dienst-blok-tekst">
+                <span class="dienst-blok-num">04</span>
+                <h2 class="dienst-blok-titel">Verbouwingen &amp; Transformaties</h2>
+                <p>Bestaande gebouwen hebben karakter. Dat karakter bewaar je, versterk je en breid je uit. DVRE geeft bestaande panden nieuw leven — met respect voor het verleden en oog voor de toekomst.</p>
+                <p>Duurzaam, doordacht, en altijd met meerwaarde.</p>
+                <a href="contact.html" class="btn-secondary">Neem contact op &nbsp;→</a>
+            </div>
+        </div>
+
+        <div class="dienst-blok">
+            <div class="dienst-blok-img" style="background-image: url('images/Projecten homepage/Project 02.png');"></div>
+            <div class="dienst-blok-tekst">
+                <span class="dienst-blok-num">05</span>
+                <h2 class="dienst-blok-titel">Splitsingen</h2>
+                <p>Van één woning naar meerdere zelfstandige eenheden — dat is een ingrijpende verandering die we van A tot Z begeleiden.</p>
+                <p>Van technische haalbaarheid en vergunningstraject tot de indeling en het ontwerp per eenheid. Meer waarde uit hetzelfde pand.</p>
+                <a href="contact.html" class="btn-secondary">Neem contact op &nbsp;→</a>
+            </div>
+        </div>
+
+        <div class="dienst-blok">
+            <div class="dienst-blok-img" style="background-image: url('images/Slider/Slider 03.png');"></div>
+            <div class="dienst-blok-tekst">
+                <span class="dienst-blok-num">06</span>
+                <h2 class="dienst-blok-titel">Visualisaties</h2>
+                <p>Voordat de eerste steen wordt gelegd, laat DVRE zien hoe het eruit gaat zien. Onze visualisaties zijn geen kille computerbeelden — het zijn beelden die het gevoel van de ruimte overbrengen.</p>
+                <p>Zo neem je beslissingen met vertrouwen, en verkoopt of overtuigt het ontwerp zichzelf.</p>
+                <a href="contact.html" class="btn-secondary">Neem contact op &nbsp;→</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section id="contact-cta">
+        <div id="cta-text">
+            <p>Heb je plannen?</p>
+            <p><strong>Wij maken ze mogelijk.</strong></p>
+        </div>
+        <a href="contact.html" class="btn-primary btn-outline">Neem contact op &nbsp;→</a>
+    </section>
+
+    <footer id="footer">
+        <div id="footer-logo"><div id="footer-logo-box"><span>DVRE</span></div></div>
+        <div class="footer-col">
+            <p class="footer-heading">Navigatie</p>
+            <a href="projecten.html">Projecten</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over DVRE</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Socials</p>
+            <a href="#">Instagram</a><a href="#">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Contact</p>
+            <a href="mailto:info@dvre.studio">info@dvre.studio</a>
+            <a href="tel:+31612345678">+31 6 12345678</a>
+            <span>Nederland</span>
+        </div>
+        <div id="footer-copy">© DVRE Studio 2025</div>
+    </footer>
+
+    <script>
+    (function () {
+        var hamburger   = document.getElementById('hamburger');
+        var mobileMenu  = document.getElementById('mobile-menu');
+        var mobileClose = document.getElementById('mobile-close');
+        var mobileLinks = document.querySelectorAll('#mobile-nav a');
+        function openMenu()  { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+        hamburger.addEventListener('click', openMenu);
+        mobileClose.addEventListener('click', closeMenu);
+        mobileLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+    })();
+    </script>
+</body>
+</html>
